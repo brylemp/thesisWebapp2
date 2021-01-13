@@ -29,6 +29,7 @@ router.post('/login', async (req,res)=>{
 
 router.get('/logout', async (req,res)=>{
     console.log('logout')
+    res.redirect('/login')
 })
 
 router.post('/signup', async (req,res)=>{

@@ -1,5 +1,6 @@
 const express = require('express')
 const moment = require('moment-timezone')
+const { find } = require('../models/drivers')
 
 const driverModel = require('../models/drivers')
 const transactionsModel = require('../models/transactions')
@@ -23,16 +24,14 @@ router.post('/sakay', async (req,res)=>{
 
 router.get('/', async(req,res)=>{
     const { date } = req.query
-    console.log(date)
     let findDate
     if(!date){
         findDate = new Date(Date.now())
-        findDate.setHours(0, 0, 0, 0);
     }
     else{
         findDate = new Date(date);
-        findDate.setHours(0, 0, 0, 0);
     }
+    findDate.setHours(0, 0, 0, 0);
     
     const drivers = await driverModel.find()
     const transactions = await transactionsModel.find().sort([['date', -1]])
@@ -49,7 +48,7 @@ router.get('/', async(req,res)=>{
             }
         }
     }
-    res.render('./usersPage',{drivers,transactions})
+    res.render('./usersPage/datePage',{drivers,date:moment(date).format('YYYY-MM-DD')})
 })
 
 module.exports = router
