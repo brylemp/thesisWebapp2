@@ -5,15 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHUTTLE DISBURSEMENT</title>
     <!-- CSS only -->
+    <link rel="stylesheet" href="/css/sidebar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
-    <form method="POST">
-        <input name="driverId" type="text" placeholder="driver">
-        <input name="studentId" type="text" placeholder="student">
-        <input name="date" type="datetime-local">
-        <button>sakay</button>
-    </form>
+    <div class="sidebar">
+        <a href="/">Sort By Date</a>
+        <% for(let driver of drivers){ %>
+            <%- `<a href="/driver/${driver._id}"> ${driver.lName}, ${driver.fName} </a>`%>
+        <% } %>  
+        <a href="/logout"> Logout </a>
+        <a href="/sakay"> Sakay </a>
+    </div>
+    <div class="content">
+        <form method="POST">
+            <select name="driverId" placeholder="driver">
+                <% for(let driver of drivers){ %>
+                    <%- `<option value="${driver._id}">${driver.lName}, ${driver.fName}</option>` %>
+                <% } %>  
+            </select>
+            <input name="studentId" type="text" placeholder="student">
+            <input name="date" type="datetime-local">
+            <button>sakay</button>
+        </form>
+    </div>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
