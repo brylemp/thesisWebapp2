@@ -62,9 +62,6 @@ router.get('/driver/:driverId', async(req,res)=>{
     for(let transaction of transactions){
         if(transaction.driverId === driverSelected._id.toString()){
             driverSelected.transactions.push(transaction)
-        }
-
-        if(transaction.driverId === driverSelected._id.toString()){
             const dateOfT = new Date(transaction.date)
             dateOfT.setHours(0, 0, 0, 0);
             const exists = driverSelected.transactionsOnDate.find(trans => {
@@ -82,10 +79,7 @@ router.get('/driver/:driverId', async(req,res)=>{
             }
         }
     }
-    // const answer = driverSelected.transactionsOnDate.find(trans => {
-    //     if()
-    //     return trans.date.toLocaleString()
-    // })
+    console.log(driverSelected.transactionsOnDate)
     res.render('./usersPage/driverPage',{drivers,driverSelected})
 })
 

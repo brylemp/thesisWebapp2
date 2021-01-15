@@ -1,0 +1,14 @@
+.nav-link .active a{
+    border: solid 1px black !important;
+    color: green !important;
+}
+
+.nav-link a{
+    border: solid 1px black !important;
+    background-color: green !important;
+}
+
+nav .nav-link a{
+    background-color: red !important;
+}
+
